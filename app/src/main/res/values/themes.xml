@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="WageCounterBase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?android:windowBackground</item>
+        <item name="android:navigationBarColor">?android:windowBackground</item>
+    </style>
+
+    <style name="WageCounter" parent="WageCounterBase">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+</resources>
