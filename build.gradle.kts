@@ -5,7 +5,7 @@
 "KEY_PASSWORD" set "android"
 "STORE_FILE" set "internal.keystore"
 "STORE_PASSWORD" set "android"
-"TARGET_SDK_VERSION" set 31
+"TARGET_SDK_VERSION" set 32
 "MIN_SDK_VERSION" set 29
 
 // Used for saving the constants from above as system properties, so that all modules can access them

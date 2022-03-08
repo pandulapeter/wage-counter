@@ -5,7 +5,7 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/wage_counter"
-        android:theme="@style/WageCounter">
+        android:theme="@style/Splash">
 
         <activity
             android:name=".WageCounterActivity"

@@ -2,10 +2,12 @@
 kotlin = "1.6.10" # https://kotlinlang.org/docs/releases.html#release-details
 gradle = "7.1.0" # https://kotlinlang.org/docs/releases.html#release-details
 androidx-appcompat = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/appcompat
+androidx-core-splash = "1.0.0-beta01" #https://developer.android.com/jetpack/androidx/releases/core
 google-android-material = "1.5.0" # https://github.com/material-components/material-components-android/releases
 
 [libraries]
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-core-splash = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core-splash" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "google-android-material" }
