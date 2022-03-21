@@ -3,6 +3,7 @@
     package="com.pandulapeter.wagecounter">
 
     <application
+        android:name=".WageCounterApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/wage_counter"
         android:theme="@style/Splash">

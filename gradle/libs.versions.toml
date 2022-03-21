@@ -1,14 +1,14 @@
 [versions]
-kotlin = "1.6.10" # https://kotlinlang.org/docs/releases.html#release-details
-gradle = "7.1.2" # https://kotlinlang.org/docs/releases.html#release-details
 androidx-activity = "1.4.0" # https://developer.android.com/jetpack/androidx/releases/activity
 androidx-appcompat = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/appcompat
 androidx-compose = "1.1.1" # https://developer.android.com/jetpack/androidx/releases/compose
 androidx-core = "1.0.0-beta01" #https://developer.android.com/jetpack/androidx/releases/core
+beagle = "2.6.6" #https://github.com/pandulapeter/beagle/releases
 google-android-material = "1.5.0" # https://github.com/material-components/material-components-android/releases
+gradle = "7.1.2" # https://kotlinlang.org/docs/releases.html#release-details
+kotlin = "1.6.10" # https://kotlinlang.org/docs/releases.html#release-details
 
 [libraries]
-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
@@ -17,3 +17,6 @@ androidx-compose-material = { module = "androidx.compose.material:material", ver
 androidx-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-core-splash = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "google-android-material" }
+beagle-drawer = { module = "com.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
+beagle-noop = { module = "com.github.pandulapeter.beagle:noop", version.ref = "beagle" }
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

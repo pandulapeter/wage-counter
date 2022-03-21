@@ -56,11 +56,18 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.activity.compose)
+    // Compatibility / UI libraries
     implementation(libs.androidx.appcompat)
+    implementation(libs.google.android.material)
+    implementation(libs.androidx.core.splash)
+
+    // Compose
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.tooling)
-    implementation(libs.androidx.core.splash)
-    implementation(libs.google.android.material)
+
+    // Debug menu
+    debugImplementation(libs.beagle.drawer)
+    releaseImplementation(libs.beagle.noop)
 }
