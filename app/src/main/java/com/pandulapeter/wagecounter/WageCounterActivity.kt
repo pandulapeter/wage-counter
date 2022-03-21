@@ -3,6 +3,7 @@ package com.pandulapeter.wagecounter
 import android.animation.Animator
 import android.os.Bundle
 import android.view.animation.AccelerateInterpolator
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
@@ -11,6 +12,7 @@ class WageCounterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleSplashScreen()
+        setContent { MainApp() }
     }
 
     private fun handleSplashScreen() = installSplashScreen().setOnExitAnimationListener { splashScreen ->
