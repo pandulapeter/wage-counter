@@ -2,16 +2,16 @@ package com.pandulapeter.wagecounter.data.localSourceImpl
 
 import com.pandulapeter.wagecounter.data.localSource.ConfigurationLocalSource
 import com.pandulapeter.wagecounter.data.model.Configuration
+import com.pandulapeter.wagecounter.data.model.CurrencyFormat
 
 internal class ConfigurationLocalSourceImpl : ConfigurationLocalSource {
 
     // TODO: Implement loading from storage
     override fun loadConfiguration() = Configuration(
-        hourlyWage = 0f,
-        currencyPrefix = "Hello world!",
-        currencySuffix = "",
-        workDayLengthInMinutes = 0,
-        workDayStartHour = 0,
+        hourlyWage = 15f,
+        currencyFormat = CurrencyFormat.Suffix("$"),
+        workDayLengthInMinutes = 8 * 60,
+        workDayStartHour = 9,
         workDayStartMinute = 0
     )
 

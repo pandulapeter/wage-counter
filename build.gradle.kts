@@ -19,7 +19,7 @@ buildscript {
         maven { url = uri("https://plugins.gradle.org/m2/") }
     }
     dependencies {
-        classpath(libs.android.gradle)
-        classpath(libs.kotlin.gradle)
+        classpath(libs.gradle)
+        classpath(libs.kotlin)
     }
 }

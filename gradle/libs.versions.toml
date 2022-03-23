@@ -6,21 +6,23 @@ androidx-core = "1.0.0-beta01" #https://developer.android.com/jetpack/androidx/r
 beagle = "2.6.6" #https://github.com/pandulapeter/beagle/releases
 google-android-material = "1.5.0" # https://github.com/material-components/material-components-android/releases
 gradle = "7.1.2" # https://kotlinlang.org/docs/releases.html#release-details
+junit = "5.8.2" #https://github.com/junit-team/junit5/releases
 koin = "3.1.5" # https://github.com/InsertKoinIO/koin/tags
 kotlin = "1.6.10" # https://kotlinlang.org/docs/releases.html#release-details
 
 [libraries]
-android-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "androidx-compose" }
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
 androidx-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-core-splash = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core" }
-google-android-material = { module = "com.google.android.material:material", version.ref = "google-android-material" }
 beagle-drawer = { module = "com.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
 beagle-noop = { module = "com.github.pandulapeter.beagle:noop", version.ref = "beagle" }
+google-android-material = { module = "com.google.android.material:material", version.ref = "google-android-material" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+junit = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

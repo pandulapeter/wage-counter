@@ -6,18 +6,14 @@ import android.view.animation.AccelerateInterpolator
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.pandulapeter.wagecounter.domain.GetConfigurationUseCase
 import com.pandulapeter.wagecounter.presentation.main.ui.MainApp
-import org.koin.android.ext.android.inject
 
 class WageCounterActivity : AppCompatActivity() {
-
-    private val getConfiguration by inject<GetConfigurationUseCase>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleSplashScreen()
-        setContent { MainApp(getConfiguration()) }
+        setContent { MainApp() }
     }
 
     private fun handleSplashScreen() = installSplashScreen().setOnExitAnimationListener { splashScreen ->
