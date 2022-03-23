@@ -1,4 +1,4 @@
-package com.pandulapeter.wagecounter
+package com.pandulapeter.wagecounter.presentation.main.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding

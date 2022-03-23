@@ -1,5 +1,15 @@
 // Module definitions
-include(":app")
+include(
+    ":app",
+    ":data:model",
+    ":data:localSource",
+    ":data:localSourceImpl",
+    ":data:repository",
+    ":data:repositoryImpl",
+    ":domain",
+    ":presentation:debugMenu",
+    ":presentation:main"
+)
 
 // Project-level configuration
 rootProject.name = "Wage Counter"

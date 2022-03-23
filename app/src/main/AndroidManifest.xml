@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.pandulapeter.wagecounter">
 
     <application
         android:name=".WageCounterApplication"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/wage_counter"
-        android:theme="@style/Splash">
-
-        <activity
-            android:name=".WageCounterActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-    </application>
+        tools:ignore="MissingApplicationIcon" />
 
 </manifest>

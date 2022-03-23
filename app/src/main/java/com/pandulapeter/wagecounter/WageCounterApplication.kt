@@ -1,8 +1,6 @@
 package com.pandulapeter.wagecounter
 
 import android.app.Application
-import com.pandulapeter.beagle.Beagle
-import com.pandulapeter.beagle.modules.HeaderModule
 
 class WageCounterApplication : Application() {
 
@@ -12,12 +10,6 @@ class WageCounterApplication : Application() {
     }
 
     private fun initializeDebugMenu() {
-        Beagle.initialize(this)
-        Beagle.set(
-            HeaderModule(
-                title = getString(R.string.wage_counter),
-                text = BuildConfig.VERSION_NAME
-            )
-        )
+        // TODO inject the DebugMenu interface, call its initialize() function
     }
 }

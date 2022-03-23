@@ -1,4 +1,4 @@
-package com.pandulapeter.wagecounter
+package com.pandulapeter.wagecounter.presentation.main
 
 import android.animation.Animator
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.animation.AccelerateInterpolator
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.pandulapeter.wagecounter.presentation.main.ui.MainApp
 
 class WageCounterActivity : AppCompatActivity() {
 
