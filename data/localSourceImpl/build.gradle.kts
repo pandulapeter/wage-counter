@@ -15,4 +15,5 @@ android {
 dependencies {
     implementation(project(":data:model"))
     api(project(":data:localSource"))
+    implementation(libs.koin.core)
 }

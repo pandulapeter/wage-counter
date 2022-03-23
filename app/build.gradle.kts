@@ -54,4 +54,5 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":presentation:debugMenu"))
     implementation(project(":presentation:main"))
+    implementation(libs.koin.android)
 }

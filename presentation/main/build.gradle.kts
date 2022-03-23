@@ -33,4 +33,7 @@ dependencies {
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.tooling)
+
+    // Dependency injection
+    implementation(libs.koin.compose)
 }

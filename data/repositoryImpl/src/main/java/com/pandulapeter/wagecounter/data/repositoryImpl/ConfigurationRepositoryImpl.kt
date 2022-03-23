@@ -4,7 +4,7 @@ import com.pandulapeter.wagecounter.data.localSource.ConfigurationLocalSource
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.repository.ConfigurationRepository
 
-class ConfigurationRepositoryImpl(
+internal class ConfigurationRepositoryImpl(
     private val configurationLocalSource: ConfigurationLocalSource
 ) : ConfigurationRepository {
 

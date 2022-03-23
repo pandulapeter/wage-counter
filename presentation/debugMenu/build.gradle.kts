@@ -14,4 +14,5 @@ android {
 
 dependencies {
     debugImplementation(libs.beagle.drawer)
+    implementation(libs.koin.core)
 }

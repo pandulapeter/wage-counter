@@ -16,4 +16,5 @@ dependencies {
     implementation(project(":data:model"))
     implementation(project(":data:localSource"))
     api(project(":data:repository"))
+    implementation(libs.koin.core)
 }

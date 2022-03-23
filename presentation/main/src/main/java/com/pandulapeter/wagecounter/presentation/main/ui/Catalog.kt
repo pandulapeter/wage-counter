@@ -7,15 +7,25 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pandulapeter.wagecounter.data.model.Configuration
 
 @Composable
-fun MainApp() {
+fun MainApp(configuration: Configuration?) {
     MaterialTheme {
         Text(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
-            text = "Hello world",
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            text = configuration?.currencyPrefix ?: "No configuration",
             color = Color.Cyan
         )
     }
+}
+
+@Preview
+@Composable
+private fun MainAppPreview() {
+    MainApp(null)
 }
