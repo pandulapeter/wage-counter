@@ -17,6 +17,8 @@ class CalculateWageStatusUseCase(
             timeInMillis = currentTimestamp
             set(Calendar.HOUR_OF_DAY, configuration.workDayStartHour)
             set(Calendar.MINUTE, configuration.workDayStartMinute)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
             while (timeInMillis > currentTimestamp) {
                 add(Calendar.DAY_OF_YEAR, -1)
             }

@@ -6,15 +6,15 @@ import com.pandulapeter.wagecounter.data.model.CurrencyFormat
 
 internal class ConfigurationLocalSourceImpl : ConfigurationLocalSource {
 
-    // TODO: Implement loading from storage
+    // TODO: Replace with loading from local storage
     override fun loadConfiguration() = Configuration(
         hourlyWage = 15f,
         currencyFormat = CurrencyFormat.Suffix("$"),
         workDayLengthInMinutes = 8 * 60,
-        workDayStartHour = 9,
+        workDayStartHour = 19,
         workDayStartMinute = 0
     )
 
-    // TODO: Implement saving to storage
+    // TODO: Replace with saving to local storage
     override fun saveConfiguration(configuration: Configuration) = Unit
 }

@@ -26,6 +26,7 @@ class FormatMonetaryAmountUseCaseTest {
         )
         Assertions.assertEquals(expected, actual)
     }
+
     @DisplayName("WHEN a suffix is specified THEN it is displayed after the numeric value")
     @Test
     fun verifySuffix() {
