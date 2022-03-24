@@ -11,7 +11,7 @@ internal class ConfigurationLocalSourceImpl : ConfigurationLocalSource {
         hourlyWage = 15f,
         currencyFormat = CurrencyFormat.Suffix("$"),
         workDayLengthInMinutes = 8 * 60,
-        workDayStartHour = 19,
+        workDayStartHour = 9,
         workDayStartMinute = 0
     )
 

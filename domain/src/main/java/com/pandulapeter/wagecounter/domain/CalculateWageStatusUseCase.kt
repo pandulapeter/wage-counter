@@ -26,6 +26,7 @@ class CalculateWageStatusUseCase(
         val secondsSinceLastWorkdayStarted = ((currentTimestamp - lastWorkdayStartTimestamp) / MILLIS_IN_SECOND).toInt()
         return if (secondsSinceLastWorkdayStarted > configuration.workDayLengthInMinutes * SECONDS_IN_MINUTE) WageStatus.NotWorking else WageStatus.Working(
             elapsedSecondCount = secondsSinceLastWorkdayStarted,
+            remainingSecondCount = configuration.workDayLengthInMinutes * SECONDS_IN_MINUTE - secondsSinceLastWorkdayStarted,
             earnedWage = formatMonetaryAmount(
                 currencyFormat = configuration.currencyFormat,
                 amount = (configuration.hourlyWage / SECONDS_IN_HOUR) * secondsSinceLastWorkdayStarted

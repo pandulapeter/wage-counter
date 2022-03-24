@@ -6,6 +6,7 @@ sealed class WageStatus {
 
     data class Working(
         val elapsedSecondCount: Int,
+        val remainingSecondCount: Int,
         val earnedWage: String
     ) : WageStatus()
 }

@@ -34,7 +34,7 @@ fun MainApp(
         val runnable = object : Runnable {
             override fun run() {
                 timestamp.value = System.currentTimeMillis()
-                handler.postDelayed(this, 1000L)
+                handler.postDelayed(this, REFRESH_PERIOD)
             }
 
         }
@@ -50,6 +50,8 @@ fun MainApp(
         )
     }
 }
+
+private const val REFRESH_PERIOD = 1000L
 
 @Composable
 private fun DebugInformation(
@@ -93,7 +95,7 @@ private fun WageStatus.print(
     formatTime: FormatTimeUseCase
 ) = when (this) {
     WageStatus.NotWorking -> "You are outside of your working hours."
-    is WageStatus.Working -> "You've been working for ${formatTime(elapsedSecondCount)} minutes and earned $earnedWage."
+    is WageStatus.Working -> "You've been working for ${formatTime(elapsedSecondCount)} minutes (there are ${formatTime(remainingSecondCount)} minutes remaining) and earned $earnedWage."
 }
 
 @Preview
