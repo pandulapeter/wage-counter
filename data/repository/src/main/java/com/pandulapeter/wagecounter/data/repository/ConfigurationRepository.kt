@@ -4,7 +4,7 @@ import com.pandulapeter.wagecounter.data.model.Configuration
 
 interface ConfigurationRepository {
 
-    fun getConfiguration(): Configuration?
+    fun getConfiguration(): Configuration
 
     fun updateConfiguration(configuration: Configuration)
 }

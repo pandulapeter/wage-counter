@@ -11,68 +11,57 @@ internal class LocalStorageManagerImpl(
 ) : LocalStorageManager {
 
     private val preferences = context.applicationContext.getSharedPreferences("preferences", Context.MODE_PRIVATE)
-    private var isConfigurationSet by MutablePreferenceFieldDelegate.Boolean("isConfigurationSet")
-    private var hourlyWage by MutablePreferenceFieldDelegate.Float("hourlyWage")
-    private var shouldUseCurrencyPrefix by MutablePreferenceFieldDelegate.Boolean("shouldUseCurrencyPrefix")
-    private var currencyData by MutablePreferenceFieldDelegate.String("currencyData")
-    private var workDayLengthInMinutes by MutablePreferenceFieldDelegate.Int("workDayLengthInMinutes")
-    private var workDayStartHour by MutablePreferenceFieldDelegate.Int("workDayStartHour")
-    private var workDayStartMinute by MutablePreferenceFieldDelegate.Int("workDayStartMinute")
-    override var savedConfiguration: Configuration?
-        get() = if (isConfigurationSet) Configuration(
+    private var hourlyWage by MutablePreferenceFieldDelegate.Float(key = "hourlyWage", defaultValue = 15f)
+    private var shouldUseCurrencyPrefix by MutablePreferenceFieldDelegate.Boolean(key = "shouldUseCurrencyPrefix", defaultValue = false)
+    private var currencyData by MutablePreferenceFieldDelegate.String(key = "currencyData", defaultValue = "$")
+    private var workDayLengthInMinutes by MutablePreferenceFieldDelegate.Int(key = "workDayLengthInMinutes", defaultValue = 8 * 60)
+    private var workDayStartHour by MutablePreferenceFieldDelegate.Int(key = "workDayStartHour", defaultValue = 9)
+    private var workDayStartMinute by MutablePreferenceFieldDelegate.Int(key = "workDayStartMinute", defaultValue = 0)
+    override var savedConfiguration: Configuration
+        get() = Configuration(
             hourlyWage = hourlyWage,
             currencyFormat = if (shouldUseCurrencyPrefix) CurrencyFormat.Prefix(currencyData) else CurrencyFormat.Suffix(currencyData),
             workDayLengthInMinutes = workDayLengthInMinutes,
             workDayStartHour = workDayStartHour,
             workDayStartMinute = workDayStartMinute
-        ) else null
+        )
         set(value) {
-            isConfigurationSet = value != null
-            value?.let {
-                hourlyWage = value.hourlyWage
-                shouldUseCurrencyPrefix = value.currencyFormat is CurrencyFormat.Prefix
-                currencyData = value.currencyFormat.data
-                workDayLengthInMinutes = value.workDayLengthInMinutes
-                workDayStartHour = value.workDayStartHour
-                workDayStartMinute = value.workDayStartMinute
-            }
+            hourlyWage = value.hourlyWage
+            shouldUseCurrencyPrefix = value.currencyFormat is CurrencyFormat.Prefix
+            currencyData = value.currencyFormat.data
+            workDayLengthInMinutes = value.workDayLengthInMinutes
+            workDayStartHour = value.workDayStartHour
+            workDayStartMinute = value.workDayStartMinute
         }
 
-    private sealed class MutablePreferenceFieldDelegate<T>(protected val key: kotlin.String) : ReadWriteProperty<LocalStorageManagerImpl, T> {
+    private sealed class MutablePreferenceFieldDelegate<T>(protected val key: kotlin.String, val defaultValue: T) : ReadWriteProperty<LocalStorageManagerImpl, T> {
 
-        class Boolean(key: kotlin.String) : MutablePreferenceFieldDelegate<kotlin.Boolean>(key) {
+        class Boolean(key: kotlin.String, defaultValue: kotlin.Boolean) : MutablePreferenceFieldDelegate<kotlin.Boolean>(key, defaultValue) {
 
-            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getBoolean(key, DEFAULT_BOOLEAN)
+            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getBoolean(key, defaultValue)
 
             override fun setValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>, value: kotlin.Boolean) = thisRef.preferences.edit().putBoolean(key, value).apply()
         }
 
-        class Int(key: kotlin.String) : MutablePreferenceFieldDelegate<kotlin.Int>(key) {
+        class Int(key: kotlin.String, defaultValue: kotlin.Int) : MutablePreferenceFieldDelegate<kotlin.Int>(key, defaultValue) {
 
-            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getInt(key, DEFAULT_INT)
+            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getInt(key, defaultValue)
 
             override fun setValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>, value: kotlin.Int) = thisRef.preferences.edit().putInt(key, value).apply()
         }
 
-        class Float(key: kotlin.String) : MutablePreferenceFieldDelegate<kotlin.Float>(key) {
+        class Float(key: kotlin.String, defaultValue: kotlin.Float) : MutablePreferenceFieldDelegate<kotlin.Float>(key, defaultValue) {
 
-            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getFloat(key, DEFAULT_FLOAT)
+            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getFloat(key, defaultValue)
 
             override fun setValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>, value: kotlin.Float) = thisRef.preferences.edit().putFloat(key, value).apply()
         }
 
-        class String(key: kotlin.String) : MutablePreferenceFieldDelegate<kotlin.String>(key) {
+        class String(key: kotlin.String, defaultValue: kotlin.String) : MutablePreferenceFieldDelegate<kotlin.String>(key, defaultValue) {
 
-            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getString(key, DEFAULT_STRING).orEmpty()
+            override fun getValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>) = thisRef.preferences.getString(key, defaultValue).orEmpty()
 
             override fun setValue(thisRef: LocalStorageManagerImpl, property: KProperty<*>, value: kotlin.String) = thisRef.preferences.edit().putString(key, value).apply()
-        }
-
-        companion object {
-            private const val DEFAULT_BOOLEAN = false
-            private const val DEFAULT_INT = 0
-            private const val DEFAULT_FLOAT = 0f
-            private const val DEFAULT_STRING = ""
         }
     }
 }

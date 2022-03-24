@@ -12,7 +12,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.model.WageStatus
@@ -26,27 +25,24 @@ import org.koin.androidx.compose.get
 fun MainApp(
     getConfiguration: GetConfigurationUseCase = get()
 ) {
-    val timestamp = remember { mutableStateOf(0L) }
+    val currentTimestamp = remember { mutableStateOf(0L) }
 
     DisposableEffect(Unit) {
-        // TODO: Replace with coroutines.
         val handler = Handler(Looper.getMainLooper())
         val runnable = object : Runnable {
             override fun run() {
-                timestamp.value = System.currentTimeMillis()
+                currentTimestamp.value = System.currentTimeMillis()
                 handler.postDelayed(this, REFRESH_PERIOD)
             }
-
         }
         handler.post(runnable)
         onDispose { handler.removeCallbacks(runnable) }
-
     }
 
     MaterialTheme {
         DebugInformation(
             configuration = getConfiguration(),
-            timestamp = timestamp.value
+            timestamp = currentTimestamp.value
         )
     }
 }
@@ -55,7 +51,7 @@ private const val REFRESH_PERIOD = 1000L
 
 @Composable
 private fun DebugInformation(
-    configuration: Configuration?,
+    configuration: Configuration,
     timestamp: Long,
     calculateWageStatus: CalculateWageStatusUseCase = get(),
     formatMonetaryAmount: FormatMonetaryAmountUseCase = get(),
@@ -65,17 +61,15 @@ private fun DebugInformation(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        text = configuration?.let {
-            it.print(
-                formatMonetaryAmount = formatMonetaryAmount,
-                formatTime = formatTime
-            ) + calculateWageStatus(
-                currentTimestamp = timestamp,
-                configuration = it
-            ).print(
-                formatTime = formatTime
-            )
-        } ?: "Missing configuration",
+        text = configuration.print(
+            formatMonetaryAmount = formatMonetaryAmount,
+            formatTime = formatTime
+        ) + calculateWageStatus(
+            currentTimestamp = timestamp,
+            configuration = configuration
+        ).print(
+            formatTime = formatTime
+        ),
         color = Color.Magenta
     )
 }
@@ -96,13 +90,4 @@ private fun WageStatus.print(
 ) = when (this) {
     WageStatus.NotWorking -> "You are outside of your working hours."
     is WageStatus.Working -> "You've been working for ${formatTime(elapsedSecondCount)} minutes (there are ${formatTime(remainingSecondCount)} minutes remaining) and earned $earnedWage."
-}
-
-@Preview
-@Composable
-private fun DebugInformationPreview() {
-    DebugInformation(
-        configuration = null,
-        timestamp = 0L
-    )
 }

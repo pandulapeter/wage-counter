@@ -4,5 +4,5 @@ import com.pandulapeter.wagecounter.data.model.Configuration
 
 internal interface LocalStorageManager {
 
-    var savedConfiguration: Configuration?
+    var savedConfiguration: Configuration
 }
