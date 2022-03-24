@@ -5,6 +5,7 @@ import com.pandulapeter.beagle.Beagle
 import com.pandulapeter.beagle.common.configuration.Placement
 import com.pandulapeter.beagle.modules.HeaderModule
 import com.pandulapeter.beagle.modules.KeyValueListModule
+import com.pandulapeter.beagle.modules.LogListModule
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.model.WageStatus
 import com.pandulapeter.wagecounter.domain.FormatHoursMinutesAndSecondsUseCase
@@ -28,8 +29,12 @@ internal class DebugMenuImpl(
             HeaderModule(
                 title = appTitle,
                 text = versionName
+            ),
+            LogListModule(
+                isExpandedInitially = true
             )
         )
+        Beagle.log("App started")
     }
 
     override fun updateData(
@@ -75,6 +80,17 @@ internal class DebugMenuImpl(
                 }
             }
         ),
-        placement = Placement.Bottom
+        placement = Placement.Below(HeaderModule.ID)
+    )
+
+    override fun logConfigurationChangeEvent(newConfiguration: Configuration) = Beagle.log(
+        "Configuration changed. Hours: " + formatWorkingHours(
+            workDayLengthInMinutes = newConfiguration.workDayLengthInMinutes,
+            workDayStartHour = newConfiguration.workDayStartHour,
+            workDayStartMinute = newConfiguration.workDayStartMinute
+        ) + ", Wage: " + formatMonetaryAmount(
+            currencyFormat = newConfiguration.currencyFormat,
+            amount = newConfiguration.hourlyWage
+        )
     )
 }

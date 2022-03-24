@@ -13,7 +13,8 @@ class WageCounterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleSplashScreen()
-        setContent { MainApp() }
+        setTheme(com.google.android.material.R.style.Theme_Material3_Dark_NoActionBar) // TODO: This line should not be needed, but the time picker dialog crashes without it
+        setContent { MainApp(supportFragmentManager) }
     }
 
     private fun handleSplashScreen() = installSplashScreen().setOnExitAnimationListener { splashScreen ->

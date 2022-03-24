@@ -17,4 +17,8 @@ interface DebugMenu {
         configuration: Configuration,
         wageStatus: WageStatus
     ) = Unit
+
+    fun logConfigurationChangeEvent(
+        newConfiguration: Configuration
+    ) = Unit
 }
