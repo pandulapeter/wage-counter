@@ -5,5 +5,5 @@ import com.pandulapeter.wagecounter.presentation.debugMenu.DebugMenuImpl
 import org.koin.dsl.module
 
 val debugMenuModule = module {
-    single<DebugMenu> { DebugMenuImpl() }
+    single<DebugMenu> { DebugMenuImpl()) }
 }

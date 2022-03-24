@@ -14,5 +14,8 @@ android {
 
 dependencies {
     debugImplementation(libs.beagle.drawer)
+    debugImplementation(libs.androidx.lifecycle)
+    debugImplementation(project(":domain"))
     implementation(libs.koin.core)
+    implementation(project(":data:model"))
 }

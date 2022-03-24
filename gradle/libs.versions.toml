@@ -3,6 +3,7 @@ androidx-activity = "1.4.0" # https://developer.android.com/jetpack/androidx/rel
 androidx-appcompat = "1.4.1" # https://developer.android.com/jetpack/androidx/releases/appcompat
 androidx-compose = "1.1.1" # https://developer.android.com/jetpack/androidx/releases/compose
 androidx-core = "1.0.0-beta01" #https://developer.android.com/jetpack/androidx/releases/core
+androidx-lifecycle = "2.4.1" #https://developer.android.com/jetpack/androidx/releases/lifecycle
 beagle = "2.6.6" #https://github.com/pandulapeter/beagle/releases
 google-android-material = "1.5.0" # https://github.com/material-components/material-components-android/releases
 gradle = "7.1.2" # https://kotlinlang.org/docs/releases.html#release-details
@@ -17,6 +18,7 @@ androidx-compose-animation = { module = "androidx.compose.animation:animation", 
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
 androidx-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-core-splash = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core" }
+androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 beagle-drawer = { module = "com.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
 beagle-noop = { module = "com.github.pandulapeter.beagle:noop", version.ref = "beagle" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "google-android-material" }

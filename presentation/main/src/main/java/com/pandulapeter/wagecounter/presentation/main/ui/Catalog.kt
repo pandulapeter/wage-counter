@@ -16,9 +16,11 @@ import androidx.compose.ui.unit.dp
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.model.WageStatus
 import com.pandulapeter.wagecounter.domain.CalculateWageStatusUseCase
+import com.pandulapeter.wagecounter.domain.FormatHoursMinutesAndSecondsUseCase
 import com.pandulapeter.wagecounter.domain.FormatMonetaryAmountUseCase
-import com.pandulapeter.wagecounter.domain.FormatTimeUseCase
+import com.pandulapeter.wagecounter.domain.FormatWorkingHoursUseCase
 import com.pandulapeter.wagecounter.domain.GetConfigurationUseCase
+import com.pandulapeter.wagecounter.presentation.debugMenu.DebugMenu
 import org.koin.androidx.compose.get
 
 @Composable
@@ -42,7 +44,7 @@ fun MainApp(
     MaterialTheme {
         DebugInformation(
             configuration = getConfiguration(),
-            timestamp = currentTimestamp.value
+            currentTimestamp = currentTimestamp.value
         )
     }
 }
@@ -52,42 +54,49 @@ private const val REFRESH_PERIOD = 1000L
 @Composable
 private fun DebugInformation(
     configuration: Configuration,
-    timestamp: Long,
+    currentTimestamp: Long,
     calculateWageStatus: CalculateWageStatusUseCase = get(),
     formatMonetaryAmount: FormatMonetaryAmountUseCase = get(),
-    formatTime: FormatTimeUseCase = get()
+    formatWorkingHours: FormatWorkingHoursUseCase = get(),
+    formatHoursMinutesAndSeconds: FormatHoursMinutesAndSecondsUseCase = get(),
+    debugMenu: DebugMenu = get()
 ) {
     Text(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        text = configuration.print(
-            formatMonetaryAmount = formatMonetaryAmount,
-            formatTime = formatTime
-        ) + calculateWageStatus(
-            currentTimestamp = timestamp,
+        text = "Your schedule is ${
+            formatWorkingHours(
+                workDayLengthInMinutes = configuration.workDayLengthInMinutes,
+                workDayStartHour = configuration.workDayStartHour,
+                workDayStartMinute = configuration.workDayStartMinute
+            )
+        } with a wage of ${
+            formatMonetaryAmount(
+                currencyFormat = configuration.currencyFormat,
+                amount = configuration.hourlyWage
+            )
+        } per hour.\n\n" + calculateWageStatus(
+            currentTimestamp = currentTimestamp,
             configuration = configuration
-        ).print(
-            formatTime = formatTime
+        ).also { wageStatus ->
+            debugMenu.updateData(
+                currentTimestamp = currentTimestamp,
+                configuration = configuration,
+                wageStatus = wageStatus
+            )
+        }.print(
+            formatHoursMinutesAndSeconds = formatHoursMinutesAndSeconds
         ),
         color = Color.Magenta
     )
 }
 
-private fun Configuration.print(
-    formatMonetaryAmount: FormatMonetaryAmountUseCase,
-    formatTime: FormatTimeUseCase
-) =
-    "Your schedule is ${formatTime(workDayLengthInMinutes)} hours of work starting at ${"%02d".format(workDayStartHour)}:${"%02d".format(workDayStartMinute)}. The wage is ${
-        formatMonetaryAmount(
-            currencyFormat = currencyFormat,
-            amount = hourlyWage
-        )
-    } per hour.\n"
-
 private fun WageStatus.print(
-    formatTime: FormatTimeUseCase
+    formatHoursMinutesAndSeconds: FormatHoursMinutesAndSecondsUseCase
 ) = when (this) {
     WageStatus.NotWorking -> "You are outside of your working hours."
-    is WageStatus.Working -> "You've been working for ${formatTime(elapsedSecondCount)} minutes (there are ${formatTime(remainingSecondCount)} minutes remaining) and earned $earnedWage."
+    is WageStatus.Working -> " - Working for: ${formatHoursMinutesAndSeconds(elapsedSecondCount)}\n" +
+            " - Remaining: ${formatHoursMinutesAndSeconds(remainingSecondCount)}\n" +
+            " - Earned: $earnedWage"
 }
