@@ -21,23 +21,10 @@ android {
 
 dependencies {
     implementation(project(":domain"))
-    implementation(project(":presentation:summary"))
-    implementation(project(":presentation:startTime"))
-    implementation(project(":presentation:dayLength"))
-    implementation(project(":presentation:hourlyWage"))
     implementation(project(":presentation:shared"))
     implementation(project(":presentation:debugMenu"))
-
-    // Compatibility / UI libraries
-    implementation(libs.androidx.appcompat)
-    implementation(libs.google.android.material)
-    implementation(libs.androidx.core.splash)
-
-    // Compose
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.tooling)
-
-    // Dependency injection
     implementation(libs.koin.compose)
 }

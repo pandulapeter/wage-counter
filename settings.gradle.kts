@@ -1,14 +1,26 @@
 // Module definitions
 include(
+    // Entry point
     ":app",
+
+    // Data layer
     ":data:model",
     ":data:localSource",
     ":data:localSourceImpl",
     ":data:repository",
     ":data:repositoryImpl",
+
+    // Domain layer
     ":domain",
-    ":presentation:debugMenu",
-    ":presentation:main"
+
+    // Presentation layer
+    ":presentation:main",
+    ":presentation:summary",
+    ":presentation:startTime",
+    ":presentation:dayLength",
+    ":presentation:hourlyWage",
+    ":presentation:shared",
+    ":presentation:debugMenu"
 )
 
 // Project-level configuration

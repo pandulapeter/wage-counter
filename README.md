@@ -10,3 +10,10 @@ It also serves as my playground for experimenting with Jetpack Compose, the Grad
 - `:domain` - Pure Kotlin module that handles the domain layer.
 - `:presentation` - Folder containing feature modules that handle the presentation layer.
 - `:gradle` - Folder containing the version catalog and the Gradle wrapper.
+
+Work in progress. Current priorities:
+- Fix the theming issue (TODO in `WageCounterActivity`)
+- Finalize the UI
+- Add @Preview functions for all UI blocks
+- Reduce code duplication in `gradle.kts` files
+- Add more tests

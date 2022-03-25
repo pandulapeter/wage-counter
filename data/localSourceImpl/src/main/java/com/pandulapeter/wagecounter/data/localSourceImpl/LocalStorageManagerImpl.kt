@@ -21,17 +21,17 @@ internal class LocalStorageManagerImpl(
         get() = Configuration(
             hourlyWage = hourlyWage,
             currencyFormat = if (shouldUseCurrencyPrefix) CurrencyFormat.Prefix(currencyData) else CurrencyFormat.Suffix(currencyData),
-            workDayLengthInMinutes = workDayLengthInMinutes,
-            workDayStartHour = workDayStartHour,
-            workDayStartMinute = workDayStartMinute
+            dayLengthInMinutes = workDayLengthInMinutes,
+            startHour = workDayStartHour,
+            startMinute = workDayStartMinute
         )
         set(value) {
             hourlyWage = value.hourlyWage
             shouldUseCurrencyPrefix = value.currencyFormat is CurrencyFormat.Prefix
             currencyData = value.currencyFormat.data
-            workDayLengthInMinutes = value.workDayLengthInMinutes
-            workDayStartHour = value.workDayStartHour
-            workDayStartMinute = value.workDayStartMinute
+            workDayLengthInMinutes = value.dayLengthInMinutes
+            workDayStartHour = value.startHour
+            workDayStartMinute = value.startMinute
         }
 
     private sealed class MutablePreferenceFieldDelegate<T>(protected val key: kotlin.String, val defaultValue: T) : ReadWriteProperty<LocalStorageManagerImpl, T> {

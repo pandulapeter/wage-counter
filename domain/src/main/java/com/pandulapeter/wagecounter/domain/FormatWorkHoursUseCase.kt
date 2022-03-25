@@ -3,7 +3,7 @@ package com.pandulapeter.wagecounter.domain
 import java.util.Calendar
 
 
-class FormatWorkingHoursUseCase(
+class FormatWorkHoursUseCase(
     private val formatHoursAndMinutes: FormatHoursAndMinutesUseCase
 ) {
 

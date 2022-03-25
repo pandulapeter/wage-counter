@@ -1,9 +1,9 @@
 package com.pandulapeter.wagecounter.data.model
 
 data class Configuration(
+    val startHour: Int,
+    val startMinute: Int,
+    val dayLengthInMinutes: Int,
     val hourlyWage: Float,
-    val currencyFormat: CurrencyFormat,
-    val workDayLengthInMinutes: Int,
-    val workDayStartHour: Int,
-    val workDayStartMinute: Int
+    val currencyFormat: CurrencyFormat
 )

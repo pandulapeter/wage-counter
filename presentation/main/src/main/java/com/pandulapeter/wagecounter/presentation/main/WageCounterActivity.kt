@@ -6,15 +6,15 @@ import android.view.animation.AccelerateInterpolator
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.pandulapeter.wagecounter.presentation.main.ui.MainApp
 
 class WageCounterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleSplashScreen()
-        setTheme(com.google.android.material.R.style.Theme_Material3_Dark_NoActionBar) // TODO: This line should not be needed, but the time picker dialog crashes without it
-        setContent { MainApp(supportFragmentManager) }
+        // TODO: The following line should not be needed, but the time picker dialog crashes without it
+        setTheme(com.google.android.material.R.style.Theme_Material3_Dark_NoActionBar)
+        setContent { Main(supportFragmentManager) }
     }
 
     private fun handleSplashScreen() = installSplashScreen().setOnExitAnimationListener { splashScreen ->

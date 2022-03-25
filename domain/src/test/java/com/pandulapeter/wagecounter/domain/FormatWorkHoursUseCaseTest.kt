@@ -6,13 +6,13 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 
-class FormatWorkingHoursUseCaseTest {
+class FormatWorkHoursUseCaseTest {
 
-    private lateinit var sut: FormatWorkingHoursUseCase
+    private lateinit var sut: FormatWorkHoursUseCase
 
     @BeforeEach
     fun setUp() {
-        sut = FormatWorkingHoursUseCase(
+        sut = FormatWorkHoursUseCase(
             formatHoursAndMinutes = FormatHoursAndMinutesUseCase()
         )
     }

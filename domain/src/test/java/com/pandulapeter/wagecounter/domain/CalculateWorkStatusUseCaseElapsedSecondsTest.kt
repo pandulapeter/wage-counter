@@ -2,7 +2,7 @@ package com.pandulapeter.wagecounter.domain
 
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.model.CurrencyFormat
-import com.pandulapeter.wagecounter.data.model.WageStatus
+import com.pandulapeter.wagecounter.data.model.WorkStatus
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -10,15 +10,15 @@ import org.junit.jupiter.api.Test
 import java.util.Calendar
 
 
-class CalculateWageStatusUseCaseElapsedSecondsTest {
+class CalculateWorkStatusUseCaseElapsedSecondsTest {
 
-    private lateinit var sut: CalculateWageStatusUseCase
+    private lateinit var sut: CalculateWorkStatusUseCase
     private lateinit var sanitizedCalendar: Calendar
     private lateinit var configuration: Configuration
 
     @BeforeEach
     fun setUp() {
-        sut = CalculateWageStatusUseCase(
+        sut = CalculateWorkStatusUseCase(
             formatMonetaryAmount = FormatMonetaryAmountUseCase()
         )
         sanitizedCalendar = Calendar.getInstance().apply {
@@ -30,9 +30,9 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         configuration = Configuration(
             hourlyWage = 0f,
             currencyFormat = CurrencyFormat.Prefix(""),
-            workDayLengthInMinutes = 0,
-            workDayStartHour = 0,
-            workDayStartMinute = 0
+            dayLengthInMinutes = 0,
+            startHour = 0,
+            startMinute = 0
         )
     }
 
@@ -46,10 +46,10 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         val actual = (sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 9
+                dayLengthInMinutes = 8 * 60,
+                startHour = 9
             )
-        ) as? WageStatus.Working)?.elapsedSecondCount
+        ) as? WorkStatus.Working)?.elapsedSecondCount
         Assertions.assertEquals(expected, actual)
     }
 
@@ -59,12 +59,12 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         val currentTimestamp = sanitizedCalendar.apply {
             set(Calendar.HOUR_OF_DAY, 22)
         }.timeInMillis
-        val expected = WageStatus.NotWorking
+        val expected = WorkStatus.NotWorking
         val actual = sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 9
+                dayLengthInMinutes = 8 * 60,
+                startHour = 9
             )
         )
         Assertions.assertEquals(expected, actual)
@@ -76,12 +76,12 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         val currentTimestamp = sanitizedCalendar.apply {
             set(Calendar.HOUR_OF_DAY, 8)
         }.timeInMillis
-        val expected = WageStatus.NotWorking
+        val expected = WorkStatus.NotWorking
         val actual = sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 9
+                dayLengthInMinutes = 8 * 60,
+                startHour = 9
             )
         )
         Assertions.assertEquals(expected, actual)
@@ -91,12 +91,12 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
     @Test
     fun verifyNineToFiveNotWorkingStatusAtMidnight() {
         val currentTimestamp = sanitizedCalendar.timeInMillis
-        val expected = WageStatus.NotWorking
+        val expected = WorkStatus.NotWorking
         val actual = sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 9
+                dayLengthInMinutes = 8 * 60,
+                startHour = 9
             )
         )
         Assertions.assertEquals(expected, actual)
@@ -113,10 +113,10 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         val actual = (sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 22
+                dayLengthInMinutes = 8 * 60,
+                startHour = 22
             )
-        ) as? WageStatus.Working)?.elapsedSecondCount
+        ) as? WorkStatus.Working)?.elapsedSecondCount
         Assertions.assertEquals(expected, actual)
     }
 
@@ -126,12 +126,12 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         val currentTimestamp = sanitizedCalendar.apply {
             set(Calendar.HOUR_OF_DAY, 11)
         }.timeInMillis
-        val expected = WageStatus.NotWorking
+        val expected = WorkStatus.NotWorking
         val actual = sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 22
+                dayLengthInMinutes = 8 * 60,
+                startHour = 22
             )
         )
         Assertions.assertEquals(expected, actual)
@@ -143,12 +143,12 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         val currentTimestamp = sanitizedCalendar.apply {
             set(Calendar.HOUR_OF_DAY, 8)
         }.timeInMillis
-        val expected = WageStatus.NotWorking
+        val expected = WorkStatus.NotWorking
         val actual = sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 22
+                dayLengthInMinutes = 8 * 60,
+                startHour = 22
             )
         )
         Assertions.assertEquals(expected, actual)
@@ -162,10 +162,10 @@ class CalculateWageStatusUseCaseElapsedSecondsTest {
         val actual = (sut(
             currentTimestamp = currentTimestamp,
             configuration = configuration.copy(
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 22
+                dayLengthInMinutes = 8 * 60,
+                startHour = 22
             )
-        ) as? WageStatus.Working)?.elapsedSecondCount
+        ) as? WorkStatus.Working)?.elapsedSecondCount
         Assertions.assertEquals(expected, actual)
     }
 }

@@ -7,15 +7,15 @@ import com.pandulapeter.beagle.modules.HeaderModule
 import com.pandulapeter.beagle.modules.KeyValueListModule
 import com.pandulapeter.beagle.modules.LogListModule
 import com.pandulapeter.wagecounter.data.model.Configuration
-import com.pandulapeter.wagecounter.data.model.WageStatus
+import com.pandulapeter.wagecounter.data.model.WorkStatus
 import com.pandulapeter.wagecounter.domain.FormatHoursMinutesAndSecondsUseCase
 import com.pandulapeter.wagecounter.domain.FormatMonetaryAmountUseCase
-import com.pandulapeter.wagecounter.domain.FormatWorkingHoursUseCase
+import com.pandulapeter.wagecounter.domain.FormatWorkHoursUseCase
 import java.util.Calendar
 
 internal class DebugMenuImpl(
     private val formatMonetaryAmount: FormatMonetaryAmountUseCase,
-    private val formatWorkingHours: FormatWorkingHoursUseCase,
+    private val formatWorkHours: FormatWorkHoursUseCase,
     private val formatHoursMinutesAndSeconds: FormatHoursMinutesAndSecondsUseCase
 ) : DebugMenu {
 
@@ -40,27 +40,27 @@ internal class DebugMenuImpl(
     override fun updateData(
         currentTimestamp: Long,
         configuration: Configuration,
-        wageStatus: WageStatus
+        workStatus: WorkStatus
     ) = Beagle.add(
         KeyValueListModule(
             id = "configuration",
             title = "Configuration",
             isExpandedInitially = true,
             pairs = listOf(
-                "Hours" to formatWorkingHours(
-                    workDayLengthInMinutes = configuration.workDayLengthInMinutes,
-                    workDayStartHour = configuration.workDayStartHour,
-                    workDayStartMinute = configuration.workDayStartMinute
+                "Hours" to formatWorkHours(
+                    workDayLengthInMinutes = configuration.dayLengthInMinutes,
+                    workDayStartHour = configuration.startHour,
+                    workDayStartMinute = configuration.startMinute
                 ),
-                "Wage" to formatMonetaryAmount(
+                "Hourly wage" to formatMonetaryAmount(
                     currencyFormat = configuration.currencyFormat,
                     amount = configuration.hourlyWage
                 )
             )
         ),
         KeyValueListModule(
-            id = "wageStatus",
-            title = "Wage Status",
+            id = "workStatus",
+            title = "Work Status",
             isExpandedInitially = true,
             pairs = buildList {
                 add(
@@ -70,13 +70,13 @@ internal class DebugMenuImpl(
                         }
                     )
                 )
-                val isWorking = wageStatus is WageStatus.Working
+                val isWorking = workStatus is WorkStatus.Working
                 add("Working" to if (isWorking) "Yes" else "No")
                 if (isWorking) {
-                    wageStatus as WageStatus.Working
-                    add("Elapsed" to formatHoursMinutesAndSeconds(wageStatus.elapsedSecondCount))
-                    add("Remaining" to formatHoursMinutesAndSeconds(wageStatus.remainingSecondCount))
-                    add("Earned" to wageStatus.earnedWage)
+                    workStatus as WorkStatus.Working
+                    add("Elapsed" to formatHoursMinutesAndSeconds(workStatus.elapsedSecondCount))
+                    add("Remaining" to formatHoursMinutesAndSeconds(workStatus.remainingSecondCount))
+                    add("Earned" to workStatus.earned)
                 }
             }
         ),
@@ -84,11 +84,11 @@ internal class DebugMenuImpl(
     )
 
     override fun logConfigurationChangeEvent(newConfiguration: Configuration) = Beagle.log(
-        "Configuration changed. Hours: " + formatWorkingHours(
-            workDayLengthInMinutes = newConfiguration.workDayLengthInMinutes,
-            workDayStartHour = newConfiguration.workDayStartHour,
-            workDayStartMinute = newConfiguration.workDayStartMinute
-        ) + ", Wage: " + formatMonetaryAmount(
+        "Configuration changed: " + formatWorkHours(
+            workDayLengthInMinutes = newConfiguration.dayLengthInMinutes,
+            workDayStartHour = newConfiguration.startHour,
+            workDayStartMinute = newConfiguration.startMinute
+        ) + " for " + formatMonetaryAmount(
             currencyFormat = newConfiguration.currencyFormat,
             amount = newConfiguration.hourlyWage
         )

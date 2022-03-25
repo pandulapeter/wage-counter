@@ -11,4 +11,8 @@ For the sake of reducing code duplication, the domain models in fact come direct
 
 **Exposes API for**
 - `:presentation:main`
+- `:presentation:summary`
+- `:presentation:startTime`
+- `:presentation:dayLength`
+- `:presentation:hourlyWage`
 - `:app` (for DI)

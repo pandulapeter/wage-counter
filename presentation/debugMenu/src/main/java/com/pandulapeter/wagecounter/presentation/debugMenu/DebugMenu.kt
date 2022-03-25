@@ -2,7 +2,7 @@ package com.pandulapeter.wagecounter.presentation.debugMenu
 
 import android.app.Application
 import com.pandulapeter.wagecounter.data.model.Configuration
-import com.pandulapeter.wagecounter.data.model.WageStatus
+import com.pandulapeter.wagecounter.data.model.WorkStatus
 
 interface DebugMenu {
 
@@ -15,7 +15,7 @@ interface DebugMenu {
     fun updateData(
         currentTimestamp: Long,
         configuration: Configuration,
-        wageStatus: WageStatus
+        workStatus: WorkStatus
     ) = Unit
 
     fun logConfigurationChangeEvent(

@@ -14,7 +14,6 @@ kotlin = "1.6.10" # https://kotlinlang.org/docs/releases.html#release-details
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
-androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "androidx-compose" }
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
 androidx-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-core-splash = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core" }

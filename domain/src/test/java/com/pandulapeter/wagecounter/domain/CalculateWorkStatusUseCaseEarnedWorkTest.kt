@@ -2,7 +2,7 @@ package com.pandulapeter.wagecounter.domain
 
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.model.CurrencyFormat
-import com.pandulapeter.wagecounter.data.model.WageStatus
+import com.pandulapeter.wagecounter.data.model.WorkStatus
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -10,15 +10,15 @@ import org.junit.jupiter.api.Test
 import java.util.Calendar
 
 
-class CalculateWageStatusUseCaseEarnedWageTest {
+class CalculateWorkStatusUseCaseEarnedWorkTest {
 
-    private lateinit var sut: CalculateWageStatusUseCase
+    private lateinit var sut: CalculateWorkStatusUseCase
     private lateinit var sanitizedCalendar: Calendar
     private lateinit var configuration: Configuration
 
     @BeforeEach
     fun setUp() {
-        sut = CalculateWageStatusUseCase(
+        sut = CalculateWorkStatusUseCase(
             formatMonetaryAmount = FormatMonetaryAmountUseCase()
         )
         sanitizedCalendar = Calendar.getInstance().apply {
@@ -30,9 +30,9 @@ class CalculateWageStatusUseCaseEarnedWageTest {
         configuration = Configuration(
             hourlyWage = 0f,
             currencyFormat = CurrencyFormat.Prefix(""),
-            workDayLengthInMinutes = 0,
-            workDayStartHour = 0,
-            workDayStartMinute = 0
+            dayLengthInMinutes = 0,
+            startHour = 0,
+            startMinute = 0
         )
     }
 
@@ -49,10 +49,10 @@ class CalculateWageStatusUseCaseEarnedWageTest {
             configuration = configuration.copy(
                 currencyFormat = CurrencyFormat.Prefix("RON "),
                 hourlyWage = 60f,
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 9
+                dayLengthInMinutes = 8 * 60,
+                startHour = 9
             )
-        ) as? WageStatus.Working)?.earnedWage
+        ) as? WorkStatus.Working)?.earned
         Assertions.assertEquals(expected, actual)
     }
 
@@ -68,10 +68,10 @@ class CalculateWageStatusUseCaseEarnedWageTest {
             configuration = configuration.copy(
                 currencyFormat = CurrencyFormat.Suffix("$"),
                 hourlyWage = 120f,
-                workDayLengthInMinutes = 8 * 60,
-                workDayStartHour = 9
+                dayLengthInMinutes = 8 * 60,
+                startHour = 9
             )
-        ) as? WageStatus.Working)?.earnedWage
+        ) as? WorkStatus.Working)?.earned
         Assertions.assertEquals(expected, actual)
     }
 }

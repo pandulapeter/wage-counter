@@ -1,12 +1,12 @@
 package com.pandulapeter.wagecounter.data.model
 
-sealed class WageStatus {
+sealed class WorkStatus {
 
-    object NotWorking : WageStatus()
+    object NotWorking : WorkStatus()
 
     data class Working(
         val elapsedSecondCount: Int,
         val remainingSecondCount: Int,
-        val earnedWage: String
-    ) : WageStatus()
+        val earned: String
+    ) : WorkStatus()
 }
