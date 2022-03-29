@@ -4,9 +4,9 @@ import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.repository.ConfigurationRepository
 
 
-class UpdateConfigurationUseCase(
+class SaveConfigurationUseCase(
     private val configurationRepository: ConfigurationRepository
 ) {
 
-    operator fun invoke(configuration: Configuration) = configurationRepository.updateConfiguration(configuration)
+    operator fun invoke(configuration: Configuration) = configurationRepository.saveConfiguration(configuration)
 }

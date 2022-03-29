@@ -5,8 +5,8 @@ import com.pandulapeter.wagecounter.domain.FormatHoursAndMinutesUseCase
 import com.pandulapeter.wagecounter.domain.FormatHoursMinutesAndSecondsUseCase
 import com.pandulapeter.wagecounter.domain.FormatMonetaryAmountUseCase
 import com.pandulapeter.wagecounter.domain.FormatWorkHoursUseCase
-import com.pandulapeter.wagecounter.domain.GetConfigurationUseCase
-import com.pandulapeter.wagecounter.domain.UpdateConfigurationUseCase
+import com.pandulapeter.wagecounter.domain.LoadConfigurationUseCase
+import com.pandulapeter.wagecounter.domain.SaveConfigurationUseCase
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -15,6 +15,6 @@ val domainModule = module {
     factory { FormatHoursMinutesAndSecondsUseCase(get()) }
     factory { FormatMonetaryAmountUseCase() }
     factory { FormatWorkHoursUseCase(get()) }
-    factory { GetConfigurationUseCase(get()) }
-    factory { UpdateConfigurationUseCase(get()) }
+    factory { LoadConfigurationUseCase(get()) }
+    factory { SaveConfigurationUseCase(get()) }
 }

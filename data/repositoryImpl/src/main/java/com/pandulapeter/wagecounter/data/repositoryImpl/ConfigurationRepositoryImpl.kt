@@ -8,7 +8,7 @@ internal class ConfigurationRepositoryImpl(
     private val configurationLocalSource: ConfigurationLocalSource
 ) : ConfigurationRepository {
 
-    override fun getConfiguration() = configurationLocalSource.loadConfiguration()
+    override fun loadConfiguration() = configurationLocalSource.loadConfiguration()
 
-    override fun updateConfiguration(configuration: Configuration) = configurationLocalSource.saveConfiguration(configuration)
+    override fun saveConfiguration(configuration: Configuration) = configurationLocalSource.saveConfiguration(configuration)
 }

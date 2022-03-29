@@ -13,6 +13,8 @@ It also serves as my playground for experimenting with Jetpack Compose, the Grad
 
 Work in progress. Current priorities:
 - Finalize the UI
+- Modify the way times are displayed to respect the system AM/PM or 24h setting
+- Extract string resources
 - Add @Preview functions for all UI blocks
 - Reduce code duplication in `gradle.kts` files
 - Add more tests

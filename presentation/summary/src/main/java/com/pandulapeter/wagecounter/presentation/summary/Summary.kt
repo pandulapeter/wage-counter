@@ -6,19 +6,19 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.data.model.WorkStatus
 import com.pandulapeter.wagecounter.domain.CalculateWorkStatusUseCase
 import com.pandulapeter.wagecounter.domain.FormatHoursMinutesAndSecondsUseCase
 import com.pandulapeter.wagecounter.domain.FormatMonetaryAmountUseCase
 import com.pandulapeter.wagecounter.domain.FormatWorkHoursUseCase
-import com.pandulapeter.wagecounter.domain.GetConfigurationUseCase
 import com.pandulapeter.wagecounter.presentation.debugMenu.DebugMenu
 import org.koin.androidx.compose.get
 
 @Composable
 fun Summary(
     currentTimestamp: Long,
-    getConfiguration: GetConfigurationUseCase = get(),
+    configuration: Configuration,
     calculateWorkStatus: CalculateWorkStatusUseCase = get(),
     formatMonetaryAmount: FormatMonetaryAmountUseCase = get(),
     formatWorkHours: FormatWorkHoursUseCase = get(),
@@ -27,7 +27,6 @@ fun Summary(
 ) = Surface(
     modifier = Modifier.padding(bottom = 8.dp)
 ) {
-    val configuration = getConfiguration()
     Text(
         modifier = Modifier.padding(16.dp),
         text = "Your schedule is ${

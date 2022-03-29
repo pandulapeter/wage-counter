@@ -60,7 +60,7 @@ internal class DebugMenuImpl(
         ),
         KeyValueListModule(
             id = "workStatus",
-            title = "Work Status",
+            title = "Work status",
             isExpandedInitially = true,
             pairs = buildList {
                 add(
