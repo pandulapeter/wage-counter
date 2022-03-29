@@ -25,8 +25,8 @@ dependencies {
     implementation(project(":presentation:startTime"))
     implementation(project(":presentation:dayLength"))
     implementation(project(":presentation:hourlyWage"))
-    implementation(project(":presentation:shared"))
     implementation(project(":presentation:debugMenu"))
+    api(project(":presentation:shared"))
 
     // Compatibility / UI libraries
     implementation(libs.androidx.appcompat)

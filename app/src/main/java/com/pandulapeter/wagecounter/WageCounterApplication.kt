@@ -6,10 +6,12 @@ import com.pandulapeter.wagecounter.data.repositoryImpl.di.repositoryImplModule
 import com.pandulapeter.wagecounter.domain.di.domainModule
 import com.pandulapeter.wagecounter.presentation.debugMenu.DebugMenu
 import com.pandulapeter.wagecounter.presentation.debugMenu.di.debugMenuModule
+import com.pandulapeter.wagecounter.presentation.shared.R
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
+@Suppress("unused")
 class WageCounterApplication : Application() {
 
     private val debugMenu by inject<DebugMenu>()
@@ -23,12 +25,7 @@ class WageCounterApplication : Application() {
     private fun initializeDependencyInjection() {
         startKoin {
             androidContext(this@WageCounterApplication)
-            modules(
-                localSourceImplModule +
-                        repositoryImplModule +
-                        domainModule +
-                        debugMenuModule
-            )
+            modules(localSourceImplModule + repositoryImplModule + domainModule + debugMenuModule)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.pandulapeter.wagecounter.presentation.shared
+package com.pandulapeter.wagecounter.presentation.shared.uiComponents
 
 import androidx.compose.material.ScaffoldState
 import kotlinx.coroutines.CoroutineScope

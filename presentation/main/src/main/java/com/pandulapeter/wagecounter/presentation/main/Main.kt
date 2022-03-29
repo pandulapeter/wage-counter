@@ -1,10 +1,11 @@
 package com.pandulapeter.wagecounter.presentation.main
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
@@ -25,7 +26,7 @@ import com.pandulapeter.wagecounter.presentation.dayLength.DayLength
 import com.pandulapeter.wagecounter.presentation.debugMenu.DebugMenu
 import com.pandulapeter.wagecounter.presentation.hourlyWage.HourlyWage
 import com.pandulapeter.wagecounter.presentation.shared.WageCounterTheme
-import com.pandulapeter.wagecounter.presentation.shared.showSnackbar
+import com.pandulapeter.wagecounter.presentation.shared.uiComponents.showSnackbar
 import com.pandulapeter.wagecounter.presentation.startTime.StartTime
 import com.pandulapeter.wagecounter.presentation.summary.Summary
 import kotlinx.coroutines.CoroutineScope
@@ -34,6 +35,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.get
+
 
 @Composable
 fun Main(
@@ -113,14 +115,13 @@ private fun Container(
     content: @Composable ColumnScope.() -> Unit
 ) = WageCounterTheme {
     Scaffold(
-        modifier = Modifier,
         scaffoldState = scaffoldState
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
             content = content
         )
     }

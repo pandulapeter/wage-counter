@@ -20,7 +20,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.google.android.material)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.tooling)
+    implementation(libs.koin.compose)
 }
