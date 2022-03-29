@@ -77,6 +77,7 @@ fun Main(
             showSnackbar = ::showSnackbar
         )
         DayLength(
+            fragmentManager = fragmentManager,
             onConfigurationChanged = ::updateAndSaveConfiguration,
             showSnackbar = ::showSnackbar
         )
