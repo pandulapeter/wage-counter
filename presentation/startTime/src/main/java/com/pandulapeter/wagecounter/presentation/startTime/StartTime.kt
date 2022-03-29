@@ -10,6 +10,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.domain.LoadConfigurationUseCase
+import com.pandulapeter.wagecounter.presentation.debugMenu.DebugMenu
 import org.koin.androidx.compose.get
 
 @Composable
@@ -18,9 +19,11 @@ fun StartTime(
     onConfigurationChanged: (Configuration) -> Unit,
     showSnackbar: (String) -> Unit,
     context: Context = get(),
-    loadConfiguration: LoadConfigurationUseCase = get()
+    loadConfiguration: LoadConfigurationUseCase = get(),
+    debugMenu: DebugMenu = get()
 ) = Button(
     onClick = {
+        debugMenu.logButtonPressEvent("Work start time")
         val configuration = loadConfiguration()
         MaterialTimePicker.Builder()
             .setTimeFormat(if (DateFormat.is24HourFormat(context)) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H)

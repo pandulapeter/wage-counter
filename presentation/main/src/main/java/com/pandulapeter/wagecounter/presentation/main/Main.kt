@@ -14,6 +14,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentManager
@@ -64,6 +65,8 @@ fun Main(
         coroutineScope = coroutineScope,
         message = message
     )
+
+    val isDialogOpen = rememberSaveable { mutableStateOf(false) }
     Container(
         scaffoldState = scaffoldState
     ) {
@@ -82,6 +85,8 @@ fun Main(
             showSnackbar = ::showSnackbar
         )
         HourlyWage(
+            isDialogOpen = isDialogOpen.value,
+            setIsDialogOpen = { isDialogOpen.value = it },
             onConfigurationChanged = ::updateAndSaveConfiguration,
             showSnackbar = ::showSnackbar
         )

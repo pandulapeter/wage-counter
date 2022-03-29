@@ -8,16 +8,19 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.pandulapeter.wagecounter.data.model.Configuration
 import com.pandulapeter.wagecounter.domain.LoadConfigurationUseCase
+import com.pandulapeter.wagecounter.presentation.debugMenu.DebugMenu
 import org.koin.androidx.compose.get
 
 @Composable
 fun DayLength(
     fragmentManager: FragmentManager,
     onConfigurationChanged: (Configuration) -> Unit,
+    showSnackbar: (String) -> Unit,
     loadConfiguration: LoadConfigurationUseCase = get(),
-    showSnackbar: (String) -> Unit
+    debugMenu: DebugMenu = get()
 ) = Button(
     onClick = {
+        debugMenu.logButtonPressEvent("Day length")
         val configuration = loadConfiguration()
         MaterialTimePicker.Builder()
             .setTimeFormat(TimeFormat.CLOCK_24H)

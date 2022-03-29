@@ -83,8 +83,12 @@ internal class DebugMenuImpl(
         placement = Placement.Below(HeaderModule.ID)
     )
 
+    override fun logButtonPressEvent(buttonName: String) = Beagle.log(
+        message = "Button pressed: $buttonName"
+    )
+
     override fun logConfigurationChangeEvent(newConfiguration: Configuration) = Beagle.log(
-        "Configuration changed: " + formatWorkHours(
+        message = "Configuration changed: " + formatWorkHours(
             workDayLengthInMinutes = newConfiguration.dayLengthInMinutes,
             workDayStartHour = newConfiguration.startHour,
             workDayStartMinute = newConfiguration.startMinute

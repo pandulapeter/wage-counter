@@ -18,6 +18,10 @@ interface DebugMenu {
         workStatus: WorkStatus
     ) = Unit
 
+    fun logButtonPressEvent(
+        buttonName: String
+    ) = Unit
+
     fun logConfigurationChangeEvent(
         newConfiguration: Configuration
     ) = Unit
