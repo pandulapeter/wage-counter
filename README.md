@@ -12,7 +12,6 @@ It also serves as my playground for experimenting with Jetpack Compose, the Grad
 - `:gradle` - Folder containing the version catalog and the Gradle wrapper.
 
 Work in progress. Current priorities:
-- Fix the theming issue (TODO in `WageCounterActivity`)
 - Finalize the UI
 - Add @Preview functions for all UI blocks
 - Reduce code duplication in `gradle.kts` files
