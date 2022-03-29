@@ -12,7 +12,12 @@ class WageCounterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleSplashScreen()
-        setContent { Main(supportFragmentManager) }
+        setContent {
+            Main(
+                lifecycle = lifecycle,
+                fragmentManager = supportFragmentManager
+            )
+        }
     }
 
     private fun handleSplashScreen() = installSplashScreen().setOnExitAnimationListener { splashScreen ->
