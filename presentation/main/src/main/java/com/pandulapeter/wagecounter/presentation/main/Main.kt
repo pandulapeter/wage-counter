@@ -111,19 +111,17 @@ private fun CoroutineScope.AutoRefreshTimestamp(
 private fun Container(
     scaffoldState: ScaffoldState,
     content: @Composable ColumnScope.() -> Unit
-) {
-    WageCounterTheme {
-        Scaffold(
-            modifier = Modifier,
-            scaffoldState = scaffoldState
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.Center,
-                content = content
-            )
-        }
+) = WageCounterTheme {
+    Scaffold(
+        modifier = Modifier,
+        scaffoldState = scaffoldState
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            content = content
+        )
     }
 }

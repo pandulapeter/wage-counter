@@ -1,7 +1,7 @@
 package com.pandulapeter.wagecounter.presentation.summary
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Surface
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,7 +24,7 @@ fun Summary(
     formatWorkHours: FormatWorkHoursUseCase = get(),
     formatHoursMinutesAndSeconds: FormatHoursMinutesAndSecondsUseCase = get(),
     debugMenu: DebugMenu = get()
-) = Surface(
+) = Card(
     modifier = Modifier.padding(bottom = 8.dp)
 ) {
     Text(

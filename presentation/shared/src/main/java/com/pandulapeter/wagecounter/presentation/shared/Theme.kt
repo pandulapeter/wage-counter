@@ -11,12 +11,14 @@ import androidx.compose.ui.res.colorResource
 fun WageCounterTheme(
     content: @Composable () -> Unit
 ) = MaterialTheme(
-    colors = if (isSystemInDarkTheme()) lightColors(
+    colors = if (isSystemInDarkTheme()) darkColors(
         primary = colorResource(R.color.primary),
-        onPrimary = colorResource(R.color.on_primary)
-    ) else darkColors(
+        onPrimary = colorResource(R.color.on_primary),
+        secondary = colorResource(R.color.secondary)
+    ) else lightColors(
         primary = colorResource(R.color.primary),
-        onPrimary = colorResource(R.color.on_primary)
+        onPrimary = colorResource(R.color.on_primary),
+        secondary = colorResource(R.color.secondary)
     ),
     content = content
 )
