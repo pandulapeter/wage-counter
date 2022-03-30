@@ -23,13 +23,14 @@ class CalculateWorkStatusUseCase(
                 add(Calendar.DAY_OF_YEAR, -1)
             }
         }.timeInMillis
-        val secondsSinceLastWorkdayStarted = ((currentTimestamp - lastWorkdayStartTimestamp) / MILLIS_IN_SECOND).toInt()
-        return if (secondsSinceLastWorkdayStarted > configuration.dayLengthInMinutes * SECONDS_IN_MINUTE) WorkStatus.NotWorking else WorkStatus.Working(
+        val millisecondsSinceLastWorkdayStarted = currentTimestamp - lastWorkdayStartTimestamp
+        val secondsSinceLastWorkdayStarted = (millisecondsSinceLastWorkdayStarted / MILLIS_IN_SECOND).toInt()
+        return if (millisecondsSinceLastWorkdayStarted > configuration.dayLengthInMinutes * MILLIS_IN_MINUTE) WorkStatus.NotWorking else WorkStatus.Working(
             elapsedSecondCount = secondsSinceLastWorkdayStarted,
             remainingSecondCount = configuration.dayLengthInMinutes * SECONDS_IN_MINUTE - secondsSinceLastWorkdayStarted,
             earned = formatMonetaryAmount(
                 currencyFormat = configuration.currencyFormat,
-                amount = (configuration.hourlyWage / SECONDS_IN_HOUR) * secondsSinceLastWorkdayStarted
+                amount = (configuration.hourlyWage / MILLIS_IN_HOUR) * millisecondsSinceLastWorkdayStarted
             )
         )
     }
@@ -37,6 +38,8 @@ class CalculateWorkStatusUseCase(
     companion object {
         private const val MILLIS_IN_SECOND = 1000L
         private const val SECONDS_IN_MINUTE = 60
-        private const val SECONDS_IN_HOUR = SECONDS_IN_MINUTE * 60
+        private const val MILLIS_IN_MINUTE = SECONDS_IN_MINUTE * MILLIS_IN_SECOND
+        private const val MINUTES_IN_HOUR = 60
+        private const val MILLIS_IN_HOUR = MILLIS_IN_MINUTE * MINUTES_IN_HOUR
     }
 }
