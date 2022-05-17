@@ -4,9 +4,9 @@ androidx-appcompat = "1.4.1" # https://developer.android.com/jetpack/androidx/re
 androidx-compose = "1.1.1" # https://developer.android.com/jetpack/androidx/releases/compose
 androidx-core = "1.0.0-beta01" #https://developer.android.com/jetpack/androidx/releases/core
 androidx-lifecycle = "2.4.1" #https://developer.android.com/jetpack/androidx/releases/lifecycle
-beagle = "2.6.6" #https://github.com/pandulapeter/beagle/releases
+beagle = "2.8.0" #https://github.com/pandulapeter/beagle/releases
 google-android-material = "1.5.0" # https://github.com/material-components/material-components-android/releases
-gradle = "7.1.2" # https://kotlinlang.org/docs/releases.html#release-details
+gradle = "7.2.0" # https://developer.android.com/studio/releases/gradle-plugin
 junit = "5.8.2" #https://github.com/junit-team/junit5/releases
 koin = "3.1.5" # https://github.com/InsertKoinIO/koin/tags
 kotlin = "1.6.10" # https://kotlinlang.org/docs/releases.html#release-details
@@ -18,8 +18,8 @@ androidx-compose-material = { module = "androidx.compose.material:material", ver
 androidx-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-core-splash = { module = "androidx.core:core-splashscreen", version.ref = "androidx-core" }
 androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
-beagle-drawer = { module = "com.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
-beagle-noop = { module = "com.github.pandulapeter.beagle:noop", version.ref = "beagle" }
+beagle-drawer = { module = "io.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
+beagle-noop = { module = "io.github.pandulapeter.beagle:noop", version.ref = "beagle" }
 google-android-material = { module = "com.google.android.material:material", version.ref = "google-android-material" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }

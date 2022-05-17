@@ -6,7 +6,7 @@
         <item name="postSplashScreenTheme">@style/WageCounter</item>
     </style>
 
-    <style name="WageCounterBase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="WageCounterBase" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">?android:windowBackground</item>
         <item name="android:navigationBarColor">?android:windowBackground</item>
         <item name="android:colorPrimary">@color/primary</item>

@@ -93,7 +93,7 @@ fun Main(
     }
 }
 
-private const val REFRESH_PERIOD = 50L // TODO: Calculate this value dynamically based on the hourly wage
+private const val REFRESH_PERIOD = 25L // TODO: Calculate this value dynamically based on the hourly wage
 
 @Composable
 private fun CoroutineScope.AutoRefreshTimestamp(

@@ -13,6 +13,8 @@ It also serves as my playground for experimenting with Jetpack Compose, the Grad
 
 Work in progress. Current priorities:
 - Finalize the UI
+- Refactor SharedPreference usage to DataStore
+- RepositoryImpl should be pure Kotlin
 - Modify the way times are displayed to respect the system AM/PM or 24h setting
 - Calculate a dynamic refresh period based on the hourly wage (`Main.kt` line 96)
 - Extract string resources
